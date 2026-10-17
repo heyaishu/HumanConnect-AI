@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#23395B">
+  <title>HumanConnect AI — Communication Without Barriers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--coral:#F27D72;--navy:#23395B;--bg:#FFFCFA;--blush:#FFF0ED;--peach:#FFD6C9;--muted:#667085;--border:#F1DDD8;--white:#fff;--green:#15803D;--shadow:0 12px 35px rgba(35,57,91,.07)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:#2D3748;font-family:"DM Sans",sans-serif}
+    button,input{font:inherit} button{cursor:pointer} a{color:inherit;text-decoration:none}
+    .app{min-height:100vh}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,5vw,70px);border-bottom:1px solid var(--border);background:rgba(255,252,250,.94);position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}
+    .brand{display:flex;align-items:center;gap:11px;font-family:Manrope,sans-serif;font-weight:800;color:var(--navy);letter-spacing:-.4px}.brand-mark{width:39px;height:39px;border-radius:13px;background:var(--coral);display:grid;place-items:center;color:white;font-size:21px;box-shadow:0 5px 14px #f27d7244}.brand small{display:block;font:600 10px "DM Sans";letter-spacing:1.6px;color:var(--muted);margin-top:1px}
+    .nav{display:flex;gap:8px;align-items:center}.nav button{border:0;background:transparent;color:var(--muted);padding:10px 14px;border-radius:12px;font-weight:700;font-size:13px}.nav button.active,.nav button:hover{background:var(--blush);color:var(--navy)}.nav .pill{background:var(--navy);color:#fff;padding:11px 16px}
+    main{max-width:1200px;margin:auto;padding:35px 24px 60px}.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin:12px 0 28px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#D85F56;background:var(--blush);padding:7px 11px;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}.dot{width:7px;height:7px;background:var(--coral);border-radius:50%}
+    h1,h2,h3{font-family:Manrope,sans-serif;color:var(--navy);margin:0;letter-spacing:-.7px}h1{font-size:clamp(31px,4vw,48px);line-height:1.13;margin-top:13px;max-width:690px}h1 span{color:var(--coral)}.hero p{max-width:650px;color:var(--muted);line-height:1.7;font-size:15px;margin:14px 0 0}.hero-note{background:white;border:1px solid var(--border);border-radius:16px;padding:15px 17px;min-width:215px;box-shadow:var(--shadow)}.hero-note strong{display:block;color:var(--navy);font-size:13px}.hero-note span{font-size:12px;color:var(--muted);display:block;margin-top:5px}
+    .grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr);gap:22px;align-items:start}.card{background:white;border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}.card-head{padding:21px 23px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}.card-head h2{font-size:18px;letter-spacing:-.3px}.card-head p{font-size:12px;color:var(--muted);margin:5px 0 0}.tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;background:#FFF4D9;color:#986B14;padding:7px 9px;border-radius:9px;white-space:nowrap}
+    .camera-wrap{margin:0 20px;position:relative;background:#192943;border-radius:16px;aspect-ratio:16/10;overflow:hidden;display:grid;place-items:center}.camera-wrap video{position:absolute;width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:none}.camera-wrap video.show{display:block}.camera-placeholder{position:relative;text-align:center;color:#fff;padding:25px;max-width:360px}.camera-icon{width:62px;height:62px;border-radius:20px;background:#ffffff1c;border:1px solid #ffffff2e;display:grid;place-items:center;margin:0 auto 15px;font-size:27px}.camera-placeholder h3{color:white;font-size:17px}.camera-placeholder p{color:#d6deeb;font-size:12px;line-height:1.6;margin:8px 0 0}.camera-wrap.camera-on .camera-placeholder{display:none}.camera-overlay{display:none;position:absolute;inset:12px;border:1px solid #ffffff55;border-radius:11px;pointer-events:none}.camera-wrap.camera-on .camera-overlay{display:block}.live-label{position:absolute;top:14px;left:14px;background:#14233ccc;color:#fff;border-radius:8px;padding:7px 9px;font-size:10px;font-weight:800;display:none}.camera-wrap.camera-on .live-label{display:block}.live-label i{display:inline-block;width:6px;height:6px;background:#70D99B;border-radius:50%;margin-right:5px}
+    .camera-actions{padding:15px 20px 20px;display:flex;gap:10px}.btn{border:0;border-radius:12px;padding:12px 16px;font-size:13px;font-weight:800;transition:transform .15s,opacity .15s}.btn:active{transform:scale(.98)}.btn-primary{background:var(--coral);color:white;box-shadow:0 6px 14px #f27d7230}.btn-primary:hover{background:#e96f65}.btn-secondary{background:var(--blush);color:var(--navy)}.btn-ghost{background:white;border:1px solid var(--border);color:var(--muted)}.camera-actions .btn:first-child{flex:1}
+    .privacy{display:flex;gap:9px;padding:0 22px 20px;color:var(--muted);font-size:11px;line-height:1.5}.privacy b{color:var(--navy)}
+    .result-card{padding-bottom:18px}.result-box{margin:0 20px;background:var(--blush);border:1px solid #f7d9d3;border-radius:16px;padding:19px}.result-top{display:flex;justify-content:space-between;align-items:center}.result-top span{font-size:10px;letter-spacing:1px;font-weight:800;color:#D85F56;text-transform:uppercase}.result-top button{border:0;background:#fff;color:var(--navy);border-radius:9px;padding:8px 10px;font-size:11px;font-weight:800}.result-text{font:800 27px Manrope,sans-serif;color:var(--navy);margin:15px 0 5px;min-height:36px}.result-help{font-size:12px;color:var(--muted);line-height:1.55}.result-actions{display:flex;gap:9px;margin-top:15px}.result-actions .btn{flex:1;padding:11px 9px}.divider{height:1px;background:var(--border);margin:20px 20px 17px}.demo-head{padding:0 22px;display:flex;justify-content:space-between;align-items:center}.demo-head h3{font-size:14px}.demo-head span{font-size:11px;color:var(--muted)}.sign-grid{padding:13px 20px 5px;display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.sign-btn{border:1px solid var(--border);background:white;border-radius:13px;padding:12px 6px;color:var(--navy);text-align:center;min-height:79px}.sign-btn:hover,.sign-btn.selected{border-color:var(--coral);background:var(--blush)}.sign-emoji{font-size:22px;display:block;margin-bottom:5px}.sign-btn strong{font-size:12px}.sign-btn small{display:block;font-size:9px;color:var(--muted);margin-top:3px}.demo-warning{padding:11px 21px 0;color:var(--muted);font-size:10px;line-height:1.5}
+    .bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}.info-card{padding:21px 23px}.info-card h2{font-size:17px;margin-bottom:15px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.step{background:#fffaf8;border:1px solid var(--border);padding:14px;border-radius:14px}.step-num{width:27px;height:27px;background:var(--navy);color:white;border-radius:9px;display:grid;place-items:center;font-size:11px;font-weight:800;margin-bottom:11px}.step strong{display:block;font-size:12px;color:var(--navy)}.step p{font-size:11px;line-height:1.5;color:var(--muted);margin:5px 0 0}.history-empty{font-size:12px;color:var(--muted);padding:12px 0}.history-list{display:grid;gap:8px;max-height:155px;overflow:auto}.history-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#fffaf8;border-radius:11px;font-size:12px}.history-item strong{color:var(--navy)}.history-item span{color:var(--muted);font-size:10px}.history-head{display:flex;justify-content:space-between;align-items:center}.history-head button{border:0;background:transparent;color:#D85F56;font-weight:800;font-size:11px}.footer{border-top:1px solid var(--border);padding:24px;text-align:center;color:var(--muted);font-size:11px;line-height:1.7}.footer strong{color:var(--navy)}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--navy);color:#fff;border-radius:12px;padding:12px 16px;font-size:12px;box-shadow:var(--shadow);transition:.25s;z-index:20;max-width:90vw}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}
+    @media(max-width:850px){.grid{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}.hero-note{width:100%}.bottom-grid{grid-template-columns:1fr}.nav button:not(.pill){display:none}}
+    @media(max-width:500px){main{padding:25px 14px 40px}.topbar{padding:0 15px;height:67px}.brand{font-size:13px}.brand-mark{width:34px;height:34px}.nav .pill{font-size:11px;padding:10px}.card-head{padding:17px 16px 14px}.camera-wrap{margin:0 13px}.camera-actions{padding:13px}.privacy{padding:0 15px 17px}.result-box{margin:0 13px;padding:15px}.sign-grid{padding:13px 13px 5px;gap:6px}.sign-btn{padding:10px 3px}.sign-btn strong{font-size:11px}.steps{grid-template-columns:1fr}.step{display:flex;gap:12px;align-items:flex-start}.step-num{flex-shrink:0;margin:0}.step p{margin-top:3px}.info-card{padding:18px}.result-text{font-size:24px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="HumanConnect AI home">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span>HumanConnect AI<small>COMMUNICATION WITHOUT BARRIERS</small></span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <button class="active" data-scroll="translator">Translator</button>
+      <button data-scroll="practice">Practice</button>
+      <button data-scroll="history">History</button>
+      <button class="pill" id="howBtn">How it works ↗</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> Accessible communication, reimagined</span>
+        <h1>Let every gesture<br>find <span>its voice.</span></h1>
+        <p>Explore a more inclusive way to communicate. HumanConnect AI is a student prototype for recognizing supported signs and turning their labels into clear text and speech.</p>
+      </div>
+      <div class="hero-note"><strong>✦ Built with accessibility in mind</strong><span>Camera-based prototype · Text-to-speech · Practice tools</span></div>
+    </section>
+
+    <section class="grid" id="translator">
+      <article class="card">
+        <div class="card-head">
+          <div><h2>Live sign translator</h2><p>Position your hand clearly inside the camera frame.</p></div>
+          <span class="tag">Prototype mode</span>
+        </div>
+        <div class="camera-wrap" id="cameraWrap">
+          <video id="cameraVideo" autoplay playsinline muted></video>
+          <div class="camera-overlay"></div>
+          <span class="live-label"><i></i> CAMERA ACTIVE</span>
+          <div class="camera-placeholder">
+            <div class="camera-icon">⌁</div>
+            <h3>Your camera space</h3>
+            <p>Start your camera to preview the video. This prototype does not automatically recognize signs yet.</p>
+          </div>
+        </div>
+        <div class="camera-actions">
+          <button class="btn btn-primary" id="cameraBtn">Start camera</button>
+          <button class="btn btn-secondary" id="flipHintBtn" title="Camera preview note">Camera tips</button>
+        </div>
+        <div class="privacy"><span>🔒</span><span><b>Your privacy matters.</b> Camera access starts only when you choose it. This demo does not upload or record your video.</span></div>
+      </article>
+
+      <article class="card result-card" id="practice">
+        <div class="card-head">
+          <div><h2>Translation result</h2><p>Choose a demo label below to preview the output.</p></div>
+          <span class="tag">Demo labels</span>
+        </div>
+        <div class="result-box">
+          <div class="result-top"><span>Recognized text</span><button id="copyBtn">Copy text</button></div>
+          <div class="result-text" id="resultText" aria-live="polite">Waiting for input…</div>
+          <div class="result-help" id="resultHelp">No sign has been recognized. Select a sample below to explore the interface.</div>
+          <div class="result-actions">
+            <button class="btn btn-primary" id="speakBtn">▶ Speak result</button>
+            <button class="btn btn-secondary" id="clearBtn">Clear</button>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="demo-head"><h3>Try a sample label</h3><span>UI demonstration only</span></div>
+        <div class="sign-grid">
+          <button class="sign-btn" data-sign="Hello" data-desc="A sample greeting label."><span class="sign-emoji">👋</span><strong>Hello</strong><small>Greeting</small></button>
+          <button class="sign-btn" data-sign="Thank you" data-desc="A sample gratitude label."><span class="sign-emoji">💛</span><strong>Thank you</strong><small>Gratitude</small></button>
+          <button class="sign-btn" data-sign="Please" data-desc="A sample polite-request label."><span class="sign-emoji">🤝</span><strong>Please</strong><small>Politeness</small></button>
+          <button class="sign-btn" data-sign="Yes" data-desc="A sample agreement label."><span class="sign-emoji">✓</span><strong>Yes</strong><small>Agreement</small></button>
+          <button class="sign-btn" data-sign="No" data-desc="A sample disagreement label."><span class="sign-emoji">✕</span><strong>No</strong><small>Disagreement</small></button>
+          <button class="sign-btn" data-sign="Help" data-desc="A sample help-request label."><span class="sign-emoji">♡</span><strong>Help</strong><small>Request</small></button>
+        </div>
+        <p class="demo-warning">These buttons demonstrate the interface only. They do not identify a hand gesture, and the labels are not a validated sign-language dictionary.</p>
+      </article>
+    </section>
+
+    <section class="bottom-grid" id="how">
+      <article class="card info-card">
+        <h2>How it works</h2>
+        <div class="steps">
+          <div class="step"><span class="step-num">01</span><div><strong>Capture</strong><p>Camera provides a live preview after you grant permission.</p></div></div>
+          <div class="step"><span class="step-num">02</span><div><strong>Recognize</strong><p>A trained sign-language model must be connected for real predictions.</p></div></div>
+          <div class="step"><span class="step-num">03</span><div><strong>Communicate</strong><p>Supported results can be displayed and read aloud.</p></div></div>
+        </div>
+      </article>
+      <article class="card info-card" id="history">
+        <div class="history-head"><h2>Recent activity</h2><button id="clearHistoryBtn">Clear history</button></div>
+        <div id="historyEmpty" class="history-empty">Your demo activity will appear here after you choose a sample label.</div>
+        <div id="historyList" class="history-list"></div>
+      </article>
+    </section>
+  </main>
+  <footer class="footer"><strong>HumanConnect AI</strong> · Communication Without Barriers<br>This is an educational UI prototype, not a complete sign-language translator. Do not rely on it for emergencies or other high-stakes communication.</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  const cameraBtn = document.getElementById('cameraBtn');
+  const video = document.getElementById('cameraVideo');
+  const cameraWrap = document.getElementById('cameraWrap');
+  const resultText = document.getElementById('resultText');
+  const resultHelp = document.getElementById('resultHelp');
+  const historyList = document.getElementById('historyList');
+  const historyEmpty = document.getElementById('historyEmpty');
+  const toast = document.getElementById('toast');
+  let stream = null;
+  let currentResult = '';
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+
+  function stopCamera() {
+    if (stream) stream.getTracks().forEach(track => track.stop());
+    stream = null;
+    video.srcObject = null;
+    video.classList.remove('show');
+    cameraWrap.classList.remove('camera-on');
+    cameraBtn.textContent = 'Start camera';
+  }
+
+  cameraBtn.addEventListener('click', async () => {
+    if (stream) { stopCamera(); showToast('Camera stopped.'); return; }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      showToast('Camera is unavailable here. Use HTTPS or localhost and check browser support.');
+      return;
+    }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+      video.srcObject = stream;
+      video.classList.add('show');
+      cameraWrap.classList.add('camera-on');
+      cameraBtn.textContent = 'Stop camera';
+      showToast('Camera started. Live recognition is not connected yet.');
+    } catch (err) {
+      const msg = err && err.name === 'NotAllowedError'
+        ? 'Camera permission was denied. Allow camera access in your browser settings.'
+        : 'Could not start camera. Check that a camera is connected and not in use.';
+      showToast(msg);
+    }
+  });
+
+  function addHistory(label) {
+    historyEmpty.classList.add('hidden');
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    const left = document.createElement('strong');
+    left.textContent = label;
+    const right = document.createElement('span');
+    right.textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) + ' · Demo';
+    item.append(left, right);
+    historyList.prepend(item);
+    while (historyList.children.length > 8) historyList.lastElementChild.remove();
+  }
+
+  document.querySelectorAll('.sign-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sign-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      currentResult = btn.dataset.sign;
+      resultText.textContent = currentResult;
+      resultHelp.textContent = btn.dataset.desc + ' This is a manually selected demo label, not a camera-based prediction.';
+      addHistory(currentResult);
+    });
+  });
+
+  document.getElementById('speakBtn').addEventListener('click', () => {
+    if (!currentResult) { showToast('Choose a sample label first.'); return; }
+    if (!('speechSynthesis' in window)) { showToast('Text-to-speech is not supported by this browser.'); return; }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(currentResult);
+    utterance.lang = 'en-IN';
+    window.speechSynthesis.speak(utterance);
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', async () => {
+    if (!currentResult) { showToast('There is no result to copy yet.'); return; }
+    try {
+      await navigator.clipboard.writeText(currentResult);
+      showToast('Result copied to clipboard.');
+    } catch {
+      showToast('Clipboard access unavailable. You can select and copy the text manually.');
+    }
+  });
+
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    currentResult = '';
+    resultText.textContent = 'Waiting for input…';
+    resultHelp.textContent = 'No sign has been recognized. Select a sample below to explore the interface.';
+    document.querySelectorAll('.sign-btn').forEach(b => b.classList.remove('selected'));
+    showToast('Current result cleared.');
+  });
+
+  document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+    historyList.replaceChildren();
+    historyEmpty.classList.remove('hidden');
+    showToast('History cleared.');
+  });
+
+  document.getElementById('flipHintBtn').addEventListener('click', () => {
+    showToast('Tip: use good lighting, keep your hand fully in frame, and avoid busy backgrounds.');
+  });
+
+  document.querySelectorAll('[data-scroll]').forEach(btn => btn.addEventListener('click', () => {
+    document.getElementById(btn.dataset.scroll).scrollIntoView({behavior:'smooth', block:'start'});
+    document.querySelectorAll('[data-scroll]').forEach(b => b.classList.toggle('active', b === btn));
+  }));
+  document.getElementById('howBtn').addEventListener('click', () => document.getElementById('how').scrollIntoView({behavior:'smooth'}));
+
+  window.addEventListener('beforeunload', stopCamera);
+})();
+</script>
+</body>
+</html>
